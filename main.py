@@ -1,4 +1,5 @@
 from monobit import monobit
+from runs import runs
 
 
 def main():
@@ -11,7 +12,9 @@ def main():
 
         print(i, end=": ")
         # print(key, end=": ")
-        print(monobit(key))
+        print("monobit", monobit(key), end=", ")
+
+        print("runs", runs(key))
 
 
 main()
