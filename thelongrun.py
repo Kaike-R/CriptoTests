@@ -14,20 +14,17 @@ def thelongrun(a):
     last = None
     for char in a:
         if char != last:
-            count = 0
-            last = char
+            if count >= 34:
+                return False
+            count = 1
         if char == last:
             count = count + 1
-            last = char
-        if last == None:
-            last = char
         if count >= 34:
-            print("Estourou")
-            break
+            return False
+        
+        last = char
 
-
-    #if count < 34:
-        #print("Passou")
+    return True
 
 #thelongrun(key)
 #a = bin(int(key,16))
