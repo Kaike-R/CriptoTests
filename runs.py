@@ -1,6 +1,6 @@
 
 def binFromHex(key): 
-    hex = ''
+    bin = ''
 
     cases = {
         '0': '0000',
@@ -22,9 +22,11 @@ def binFromHex(key):
     }
 
     for c in key: 
-        hex += cases[c]
+        bin += cases[c]
 
-    return hex
+    # print("len(bin)", len(bin))
+
+    return bin
 
 def countRuns(key):
     runs = [[0] * 6, [0] * 6]
@@ -43,6 +45,8 @@ def countRuns(key):
         else: 
             # len > 6 counts as a 6-digit len
             runs[int(prev)][min(runLen, 6) - 1] += 1
+            # if runLen >= 34: 
+            #     print("estourou")
             runLen = 1
 
         prev = b
@@ -50,6 +54,8 @@ def countRuns(key):
     
     # if key ended, last run ended as well
     runs[int(b)][min(runLen, 6) - 1] += 1
+    # if runLen >= 34: 
+    #     print("estourou")
 
     return runs
 
