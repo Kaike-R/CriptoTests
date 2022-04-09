@@ -60,20 +60,33 @@ def print_tests(key, indent, level):
     all_ok = all([monobit_ok, poker_ok, runs_ok, longrun_ok])    
     print(indent * level, "is random:", all_ok)
 
+    return all_ok
+
 
 def main():
+    tests_results = []
     for i in range(1, 27):
         key = input()
+
         # remove quotes
         key = (key[1:])[:-1]
-        # print(chave)
-        # print(i)
 
         print("key", str(i) + ":")
         indent = "  "
         level = 1
 
-        print_tests(key, indent, level)
+        is_random = print_tests(key, indent, level)
+
+        tests_results.append(is_random)
+        print("")
+
+    random_keys = []
+    for (index, is_random)  in enumerate(tests_results):
+        if is_random:
+            # from 0-based index to 1-based count
+            random_keys.append(index + 1)
+        
+    print("random keys:", random_keys)
 
 
 main()
