@@ -1,6 +1,7 @@
 from monobit import monobit
 from runs import runs
-
+from thelongrun import thelongrun
+from testpoker import test
 
 def main():
     for i in range(0, 26):
@@ -15,6 +16,8 @@ def main():
         print("monobit", monobit(key), end=", ")
 
         print("runs", runs(key))
-
-
+        
+        print("poker test", test(key))
+        
+        print("thelongrun", thelongrun(key))
 main()
