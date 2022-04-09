@@ -33,7 +33,7 @@ def countRuns(key):
 
     prev = ''
     runLen = 0
-    for (i, b) in enumerate(key):
+    for b in key:
         if b == prev:
             runLen += 1
         # first bit 
