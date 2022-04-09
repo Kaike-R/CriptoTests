@@ -1,7 +1,64 @@
-from monobit import monobit
-from runs import runs
-from thelongrun import thelongrun
-from testpoker import test
+from monobit import monobit as monobittest, countOnes
+from runs import runs as runstest, countRuns
+from thelongrun import thelongrun as longruntest
+from testpoker import test as pokertest
+
+
+def print_monobittest(key, indent, level):
+    monobit_ok = monobittest(key)
+    num_monobits = countOnes(key)
+    print(indent * level, "monobit test:")
+    level += 1
+    print(indent * level, "passed:", monobit_ok)
+    print(indent * level, "number of monobits:", num_monobits)
+
+    return monobit_ok
+
+
+def print_pokertest(key, indent, level):
+    poker_ok = pokertest(key)
+    print(indent * level, "poker test:")
+    level += 1
+    print(indent * level, "passed:", poker_ok)
+    print(indent * level, "nibble counts:", [0] * 16)
+
+    return poker_ok
+
+
+def print_runstest(key, indent, level):
+    runs_ok = runstest(key)
+    print(indent * level, "runs test:")
+    level += 1
+    print(indent * level, "passed:", runs_ok)
+    print(indent * level, "runs counts:")
+    level += 1
+    runsCounts = countRuns(key)
+    for i in [0, 1]:
+        print(indent * level, str(i) + ":", runsCounts[i])
+
+    return runs_ok
+    
+
+def print_longruntest(key, indent, level):
+    longrun_ok = longruntest(key)
+    print(indent * level, "long run test:")
+    level += 1
+    print(indent * level, "passed:", longrun_ok)
+
+    return longrun_ok
+
+
+def print_tests(key, indent, level):
+    monobit_ok = print_monobittest(key, indent, level)
+        
+    poker_ok = print_pokertest(key, indent, level)
+
+    runs_ok = print_runstest(key, indent, level)
+    
+    longrun_ok = print_longruntest(key, indent, level)
+
+    all_ok = all([monobit_ok, poker_ok, runs_ok, longrun_ok])    
+    print(indent * level, "is random:", all_ok)
 
 
 def main():
@@ -14,15 +71,9 @@ def main():
 
         print("key", str(i) + ":")
         indent = "  "
+        level = 1
 
-        # print(key, end=": ")
-        print(indent, "monobit:", monobit(key))
-
-        print(indent, "runs:", runs(key))
-        
-        print(indent, "poker test:", test(key))
-        
-        print(indent, "the long run:", thelongrun(key))
+        print_tests(key, indent, level)
 
 
 main()
