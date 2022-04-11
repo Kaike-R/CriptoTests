@@ -1,7 +1,7 @@
 from monobit import monobit as monobittest, countOnes
+from testpoker import test as pokertest, countNibbles
 from runs import runs as runstest, countRuns
 from thelongrun import thelongrun as longruntest
-from testpoker import test as pokertest
 
 
 def print_monobittest(key, indent, level):

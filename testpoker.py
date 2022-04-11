@@ -1,15 +1,21 @@
+def countNibbles(key):
+    counts = []
+    for n in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']:
+        counts.append(key.count(n))
+
+    return counts
+
+
 def test(chave):
-    lista = [chave.count('0'), chave.count('1'), chave.count('2'), chave.count('3'),chave.count('4'),chave.count('5'),
-         chave.count('6'),chave.count('7'),chave.count('8'),chave.count('9'),chave.count('A'),chave.count('B'),
-         chave.count('C'),chave.count('D'),chave.count('E'),chave.count('F')]
+    fs = countNibbles(chave)
+
+    # X = (16/5000) * sum(from=0, to=15, fs, f_i => f_i ** 2) - 5000
+    sum_f = 0  
+    for f in fs:
+        sum_f += f ** 2
     
-    freq = 0  
-    for i in range(len(lista)):
-        freq = freq + (lista[i] * lista[i])
-        X = ((16/5000) * freq) - 5000
+    X = ((16/5000) * sum_f) - 5000
+    if 1.03 < X < 57.4:
+        return True
     
-        if 1.03 < X < 57.4:
-            return True
-        else:
-            return False
-        
+    return False
