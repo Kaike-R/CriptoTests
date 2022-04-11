@@ -6,8 +6,8 @@ def countNibbles(key):
     return counts
 
 
-def test(chave):
-    fs = countNibbles(chave)
+def calculateX(key):
+    fs = countNibbles(key)
 
     # X = (16/5000) * sum(from=0, to=15, fs, f_i => f_i ** 2) - 5000
     sum_f = 0  
@@ -15,6 +15,13 @@ def test(chave):
         sum_f += f ** 2
     
     X = ((16/5000) * sum_f) - 5000
+
+    return X
+
+
+def test(chave):
+    X = calculateX(chave)
+
     if 1.03 < X < 57.4:
         return True
     

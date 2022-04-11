@@ -1,5 +1,5 @@
 from monobit import monobit as monobittest, countOnes
-from testpoker import test as pokertest, countNibbles
+from testpoker import test as pokertest, calculateX, countNibbles
 from runs import runs as runstest, countRuns
 from thelongrun import thelongrun as longruntest
 
@@ -18,11 +18,13 @@ def print_monobittest(key, indent, level):
 
 def print_pokertest(key, indent, level):
     poker_ok = pokertest(key)
+    X = calculateX(key)
     nibbles_counts = countNibbles(key)
 
     print(indent * level, "poker test:")
     level += 1
     print(indent * level, "passed:", poker_ok)
+    print(indent * level, "calculated X:", "{:.2f}".format(X))
     print(indent * level, "nibble counts:", nibbles_counts)
 
     return poker_ok
